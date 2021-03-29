@@ -140,7 +140,7 @@ h3 {
 }
 @media (min-width: 1024px) {
   body {
-    font-size: 28px;
+    font-size: 25px;
   }
   button {
     font-size: 1.5rem;
@@ -162,7 +162,7 @@ h3 {
 
   @media (min-width: 1366px) {
     body {
-      font-size: 28px;
+      font-size: 25px;
     }
     #root {
       display: flex;
@@ -178,7 +178,7 @@ h3 {
   }
   @media (min-width: 1600px) {
     body {
-      font-size: 35px;
+      font-size: 28px;
     }
     .post-container-message,
     .post-container {
@@ -198,7 +198,7 @@ h3 {
   }
   @media (min-width: 1920px) {
     body {
-      font-size: 35px;
+      font-size: 25px;
     }
   }
 }
