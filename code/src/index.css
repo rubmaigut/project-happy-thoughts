@@ -21,7 +21,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to top, #ebbba7 0%, #cfc7f8 100%);
   background-attachment: fixed;
+  display: flex;
+  justify-content: center;
 }
+
+.app-container {
+  max-width: 450px;
+}
+
 .post-container {
   width: 93%;
   height: 100%;
@@ -126,6 +133,7 @@ h3 {
   font-weight: bolder;
   box-shadow: 2px 2px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 18px;
@@ -151,6 +159,9 @@ h3 {
   .text-container {
     font-size: 18px;
   }
+  .app-container {
+    max-width: 600px;
+  }
 }
 @media (min-width: 1024px) {
   html {
@@ -165,8 +176,9 @@ h3 {
   button {
     height: 2.9rem;
   }
+
   .text-container {
-    height: 9rem;
+    height: 7rem;
     font-size: 28px;
   }
   .post-container-message,
@@ -178,61 +190,61 @@ h3 {
     width: 2.8rem;
     height: 2.8rem;
   }
-
-  @media (min-width: 1366px) {
-    html {
-      font-size: 25px;
-    }
-    h4 {
-      font-size: 1.2rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-    #root {
-      display: flex;
-      justify-content: center;
-    }
-    .app-container {
-      max-width: 98rem;
-    }
-    .post-container-message,
-    .post-container {
-      height: 22rem;
-    }
+  .app-container {
+    max-width: 700px;
   }
-  @media (min-width: 1600px) {
-    html {
-      font-size: 25px;
-    }
-    h4 {
-      font-size: 2rem;
-    }
-    p {
-      font-size: 2rem;
-    }
-    .post-container-message,
-    .post-container {
-      height: 32rem;
-    }
-    .text-container {
-      height: 12rem;
-    }
-    button {
-      font-size: 2rem;
-      height: 3.2rem;
-    }
-    .message-container {
-      padding: 4.71rem 0px;
-    }
-    .send-button img {
-      width: 3.8rem;
-      height: 3.8rem;
-    }
+}
+@media (min-width: 1366px) {
+  html {
+    font-size: 25px;
   }
-  @media (min-width: 1920px) {
-    html {
-      font-size: 25px;
-    }
+  h4 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  #root {
+    display: flex;
+    justify-content: center;
+  }
+  .app-container {
+    max-width: 800px;
+  }
+  .post-container-message,
+  .post-container {
+    height: 22rem;
+  }
+}
+@media (min-width: 1600px) {
+  html {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+  .app-container {
+    max-width: 1000px;
+  }
+  .post-container-message,
+  .post-container {
+    height: 32rem;
+  }
+  .text-container {
+    height: 12rem;
+  }
+  button {
+    font-size: 2rem;
+    height: 3.2rem;
+  }
+  .message-container {
+    padding: 4.71rem 0px;
+  }
+  .send-button img {
+    width: 3.8rem;
+    height: 3.8rem;
   }
 }
