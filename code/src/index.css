@@ -169,7 +169,7 @@ h3 {
       justify-content: center;
     }
     .app-container {
-      max-width: 100rem;
+      max-width: 98rem;
     }
     .post-container-message,
     .post-container {
@@ -182,7 +182,7 @@ h3 {
     }
     .post-container-message,
     .post-container {
-      height: 30rem;
+      height: 28rem;
     }
     .text-container {
       height: 12rem;
