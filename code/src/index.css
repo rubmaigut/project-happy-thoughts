@@ -25,13 +25,14 @@ body {
   justify-content: center;
 }
 
-.app-container {
-  max-width: 450px;
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .post-container {
   width: 93%;
-  height: 100%;
   background-color: rgb(242, 240, 240);
   display: flex;
   flex-wrap: wrap;
@@ -160,12 +161,13 @@ h3 {
     font-size: 18px;
   }
   .app-container {
-    max-width: 800px;
+    width: 80%;
+    max-width: 70rem;
   }
 }
 @media (min-width: 1024px) {
   html {
-    font-size: 25px;
+    font-size: 20px;
   }
   h4 {
     font-size: 1rem;
@@ -190,13 +192,10 @@ h3 {
     width: 2.8rem;
     height: 2.8rem;
   }
-  .app-container {
-    max-width: 700px;
-  }
 }
 @media (min-width: 1366px) {
   html {
-    font-size: 25px;
+    font-size: 20px;
   }
   h4 {
     font-size: 1.2rem;
@@ -208,17 +207,18 @@ h3 {
     display: flex;
     justify-content: center;
   }
-  .app-container {
-    max-width: 1000px;
-  }
   .post-container-message,
   .post-container {
     height: 21rem;
   }
+  .app-container {
+    width: 80%;
+    max-width: 50rem;
+  }
 }
 @media (min-width: 1600px) {
   html {
-    font-size: 20px;
+    font-size: 12px;
   }
   h4 {
     font-size: 2rem;
@@ -226,9 +226,7 @@ h3 {
   p {
     font-size: 2rem;
   }
-  .app-container {
-    max-width: 1200px;
-  }
+
   .post-container-message,
   .post-container {
     height: 32rem;
@@ -246,5 +244,9 @@ h3 {
   .send-button img {
     width: 3.8rem;
     height: 3.8rem;
+  }
+  .app-container {
+    width: 80%;
+    max-width: 70rem;
   }
 }
