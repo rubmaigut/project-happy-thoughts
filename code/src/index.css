@@ -160,7 +160,7 @@ h3 {
     font-size: 18px;
   }
   .app-container {
-    max-width: 600px;
+    max-width: 800px;
   }
 }
 @media (min-width: 1024px) {
@@ -209,7 +209,7 @@ h3 {
     justify-content: center;
   }
   .app-container {
-    max-width: 800px;
+    max-width: 1000px;
   }
   .post-container-message,
   .post-container {
