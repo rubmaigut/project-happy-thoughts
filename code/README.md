@@ -1,19 +1,11 @@
 # Technigo React Starter App
 
-This app has been generated using `create-react-app`, then cleaned up a little so we have a project with just the elements we need to get started.
-
-Add components in the `src` folder and use them in `src/app.js` to get started.
+In this assignment, I'm starting to use react states by implementing a positive twitter connected with API
 
 ## Usage
 
-1. On GitHub, click the 'use this template' button to create a new repo on your account
-1. Clone the new repo to your computer
-1. Install required dependencies with npm: `npm install`
-1. Start the project: `npm start`
+In the app you can send thoughts, get and error when the text its to short or long, identify new messages and add like to diferrents post.
 
-Alternatively, if you don't want a new git repo on your account;
+If would had more time I would add local storage and loading state.
 
-1. Download & extract the [latest release](https://github.com/Technigo/react-starter/releases/latest) from GitHub
-1. Open the directory in the terminal: `cd /path/to/react-starter`
-1. Install required dependencies with npm: `npm install`
-1. Start the project: `npm start`
+## View it live

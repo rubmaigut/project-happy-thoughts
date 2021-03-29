@@ -1,13 +1,204 @@
-body {
+html {
+  width: 100%;
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: monospace;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to top, #ebbba7 0%, #cfc7f8 100%);
+  background-attachment: fixed;
+}
+.post-container {
+  width: 93%;
+  height: 100%;
+  background-color: rgb(242, 240, 240);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.71rem 0.71rem;
+  border: solid 1px black;
+  box-shadow: 5px 5px black;
+}
+.post-container-message {
+  width: 93%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.71rem 0.71rem;
+  border: solid 1px black;
+  box-shadow: 5px 5px black;
+}
+.title {
+  width: 90%;
+  text-align: left;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.text-container {
+  width: 90%;
+  height: 5rem;
+  background-color: white;
+  border: solid 1px black;
+}
+.text-area {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.text-area p {
+  margin: 0;
+  text-align: left;
+}
+.message-container {
+  width: 90%;
+  height: 4.2rem;
+  padding: 0.71rem 0px;
+}
+.message-container p {
+  margin: 0;
+  margin-top: 5px;
+}
+button {
+  height: 2.28rem;
+  background-color: #ffadad;
+  border-radius: 0.93rem;
+  border-color: #ffadad;
+}
+.send-button {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  text-align: left;
+  padding: 1rem 0px;
+}
+.likes {
+  display: flex;
+  justify-content: space-between;
+}
+.likes p {
+  padding: 0rem 0.71rem;
+}
+.time {
+  text-align: end;
+}
+.send-button img {
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: #ffadad;
+  border-radius: 50%;
+}
+.length-error {
+  color: red;
+  font-weight: bolder;
+}
+.error-message {
+  width: 90%;
+}
+h3 {
+  text-align: justify;
+  padding: 0px 08px;
+}
+.label {
+  height: 29px;
+  background-color: #ffadad;
+  width: 128px;
+  text-align: center;
+  border-radius: 10px;
+  color: #8f2525;
+  font-weight: bolder;
+  box-shadow: 2px 2px;
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  button {
+    font-size: 1rem;
+  }
+  .post-container-message,
+  .post-container {
+    box-shadow: 08px 08px black;
+    margin-bottom: 20px;
+  }
+  .send-button img {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+  .text-container {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1024px) {
+  body {
+    font-size: 28px;
+  }
+  button {
+    font-size: 1.5rem;
+    height: 2.9rem;
+  }
+  .text-container {
+    height: 9rem;
+    font-size: 28px;
+  }
+  .post-container-message,
+  .post-container {
+    box-shadow: 15px 15px black;
+    margin-bottom: 30px;
+  }
+  .send-button img {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+
+  @media (min-width: 1366px) {
+    body {
+      font-size: 28px;
+    }
+    #root {
+      display: flex;
+      justify-content: center;
+    }
+    .app-container {
+      max-width: 100rem;
+    }
+    .post-container-message,
+    .post-container {
+      height: 25rem;
+    }
+  }
+  @media (min-width: 1600px) {
+    body {
+      font-size: 35px;
+    }
+    .post-container-message,
+    .post-container {
+      height: 30rem;
+    }
+    .text-container {
+      height: 12rem;
+      font-size: 30px;
+    }
+    button {
+      font-size: 2rem;
+      height: 3.2rem;
+    }
+    .message-container {
+      padding: 4.71rem 0px;
+    }
+  }
+  @media (min-width: 1920px) {
+    body {
+      font-size: 35px;
+    }
+  }
 }
