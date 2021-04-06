@@ -9,3 +9,5 @@ In the app you can send thoughts, get and error when the text its to short or lo
 If would had more time I would add local storage and loading state.
 
 ## View it live
+
+https://happythoughts-mrubio.netlify.app/

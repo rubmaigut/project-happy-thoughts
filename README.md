@@ -1,13 +1,13 @@
 # Happy Thoughts
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+In this assignment, I'm starting to use react states by implementing a positive twitter connected with API.
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+In the app you can send thoughts, get and error when the text its to short or long, identify new messages and add like to diferrents post.
+
+If would had more time I would add local storage and loading state
 
 ## View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://happythoughts-mrubio.netlify.app/
