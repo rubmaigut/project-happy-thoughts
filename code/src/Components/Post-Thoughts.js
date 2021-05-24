@@ -12,10 +12,14 @@ const PostThoughts = ({
   const history = useHistory();
 
   useEffect(() => {
-    if (!username) {
-      history.push("/");
-    }
+    setTimeout(()=>{
+      if (!username) {
+        history.push("/");
+      }
+    },500)
   }, [username]);
+
+
 
   return (
     <main className="thoughts-component">
