@@ -71,10 +71,10 @@ export const App = () => {
     <BrowserRouter>
       <main>
         <Switch>
-          <Route exact path="/">
+          <Route path="/">
             <UserLogin userExist={userlogged} setUserExist={setUserLogged} />
           </Route>
-          <Route exact path="/thoughts">
+          <Route path="/thoughts">
             <div className="app-container">
               <div className="trending1">
                 <h1 className="subtitle">#Trending hashtag</h1>
