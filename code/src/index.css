@@ -1,8 +1,8 @@
 html,
 body,
-#root {
+#root{
   width: 100%;
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
   display: flow-root;
@@ -20,10 +20,23 @@ body {
   max-width: 415px;
 }
 /** User Login**/
+.thoughts-container{
+  width: 80%;
+  height: 100%;
+}
+
+.app-container{
+  display: flex;
+}
+
 .login{
 width: 100%;
 height: 100%;
-;
+}
+.login-header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .login-header img{
   width: 350px;
@@ -34,29 +47,25 @@ height: 100%;
   font-weight: bolder;
   font-size: 15px;
 }
-.new-user{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.new-user, .existing-user{
+  display: grid;
   margin: 0.71rem 0.71rem
-  
 }
 .text-container{
+  height: 30px;
   border: solid 2px rgb(182, 36, 36);
-
+  margin: 0px 30px;
 }
-.existing-user{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0.71rem 0.71rem;
-
+.button{
+  margin: 0px 30px;
 }
+
 /** Post Thoughts**/
 .title{
 margin-bottom: 0px;
 }
 .container{
+  height: 250px;
   border: solid 2px rgb(182, 36, 36);
   margin: 0.71rem 0.71rem;
   background-color:#fdd0d0;
@@ -72,13 +81,15 @@ margin-bottom: 0px;
 h1{
   margin: 10px;
 }
+
 .message-area p {
+  width: 100%;
   margin: 0.0rem 0.73rem;
   text-align: center;
 }
 
 .text-area {
-  width: 300px;
+  width: 85%;
   height: 100px;
   margin: 0px 15px;
   border: solid 2px rgb(182, 36, 36);
@@ -158,7 +169,7 @@ h3 {
 }
 
 .label {
-  height: 29px;
+  height: 20px;
   background-color: #ffadad;
   width: 128px;
   text-align: center;
@@ -167,14 +178,90 @@ h3 {
   font-weight: bolder;
   box-shadow: 2px 2px;
 }
-
+.trending1, .trending{
+  display: none;
+}
+@media (min-width: 360px) {
+  .text-area {
+    width: 85%;
+  }
+}
+@media (min-width: 411px) {
+  .login-header img{
+    width: 400px;
+    height: 400px;
+  }
+  .text-area {
+    width: 335px;
+  }
+}
 @media (min-width: 768px) {
-  
+  #root {
+    max-width: 768px;
+    margin-top: 20px;
+  }
+  .thoughts-component, .getThoughts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .trending1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 0px 5px;
+    border-right: #eb8181 solid 3px
+  }
+  .trending{
+    display: flex;
+    width: 30%;
+    margin: 0px 5px;
+    border-right: #eb8181 solid 3px
+  }
+  .subtitle{
+    text-align: center;
+    font-weight: bolder;
+    color: #ee8989;
+
+  }
+  .container, .post-container-message{
+    width: 90%;
+  }
+  .login-header img{
+    width: 700px;
+    height: 700px;
+    object-position: center;
+  }
+  .paragrah{
+    font-size: 18px;
+  }
+  .text-area {
+    width: 90%;
+    font-size: 14px;
+  }
+  .message-container p{
+    font-size: 14px;
+  }
+  .text-container, .button{
+    margin: 0px 100px
+  }
+ 
 }
 @media (min-width: 1024px) {
-  
+  #root {
+    max-width: 768px;
+    border: #ee8989 solid 3px;
+    border-radius: 20px;
+    box-shadow: 5px 5px #f79595;
+  }
 }
-@media (min-width: 1366px) {
+@media (min-width: 1536px) {
+  .login-header img{
+    width: 350px;
+    height: 350px;
+  }
  
 }
 @media (min-width: 1600px) {

@@ -25,9 +25,6 @@ const UserLogin = ({ setUserExist }) => {
     const userList = await existingUser(username);
     const userExist = userList.users.find((user) => user.username === username);
 
-    console.log("userList", userList);
-    console.log("userEXist", userExist);
-
     if (userExist) {
       setUserExist(username);
       history.push("/thoughts")

@@ -20,45 +20,50 @@ const showTime = (createDate) => {
 };
 
 const GetLastPost = ({ messages, error, likesIncrease }) => {
+ 
+  
   return (
-    <section>
+    <section >
       {error === true ? (
         <h1>This is an Error</h1>
       ) : (
         messages.map((message) => {
           return (
-            <div key={message._id} className="post-container-message">
-              <div className="header">
-                <img src="./assets/user.svg" alt="user" />
-                <h3>{message.username}</h3>
-              </div>
+            <main className="getThoughts">
+            
+              <div key={message._id} className="post-container-message">
+                <div className="header">
+                  <img src="./assets/user.svg" alt="user" />
+                  <h3>{message.username}</h3>
+                </div>
 
-              <div className="message-container">
-                <p>{message.message}</p>
-                <div className="hashtag">
-                  {message.hashtag.map((hashtag) => {
-                    return <p>{hashtag}</p>;
-                  })}
+                <div className="message-container">
+                  <p>{message.message}</p>
+                  <div className="hashtag">
+                    {message.hashtag.map((hashtag) => {
+                      return <p>{hashtag}</p>;
+                    })}
+                  </div>
+                </div>
+                <div className="heart-button">
+                  <div className="likes">
+                    <img
+                      src="./assets/heart.svg"
+                      alt="heart"
+                      onClick={() => likesIncrease(message._id)}
+                    />
+                    <p> x {message.hearts}</p>
+                  </div>
+                  <div className="time">
+                    {showTime(message.createDate) === "0 minutes ago" ? (
+                      <p className="label">New Message</p>
+                    ) : (
+                      <p>{showTime(message.createDate)}</p>
+                    )}
+                  </div>
                 </div>
               </div>
-              <div className="heart-button">
-                <div className="likes">
-                  <img
-                    src="./assets/heart.svg"
-                    alt="heart"
-                    onClick={() => likesIncrease(message._id)}
-                  />
-                  <p> x {message.hearts}</p>
-                </div>
-                <div className="time">
-                  {showTime(message.createDate) === "0 minutes ago" ? (
-                    <p className="label">New Message</p>
-                  ) : (
-                    <p>{showTime(message.createDate)}</p>
-                  )}
-                </div>
-              </div>
-            </div>
+            </main>
           );
         })
       )}
