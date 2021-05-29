@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from 'react-redux'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import UserLogin from "./Components/UserLogin";
+import { user } from "./reducers/user"
+import UserForm from "./Components/UserForm";
+import SignUp from "./Components/SignUp-Form";
+import SignIn from "./Components/SignIn-Form";
 import PostThoughts from "./Components/Post-Thoughts";
 import GetLastPost from "./Components/GetLast-Post";
 import { fecthData, postLikes, postThoughts } from "./ServiceAPI/ApiServices";
+
+const reducer = combineReducers({
+  user: user.reducer
+})
+
+const store = configureStore({ reducer })
 
 export const App = () => {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(false);
   const [lengthError, setLengthError] = useState(false);
-  const [userlogged, setUserLogged] = useState("");
   const [sendMessage, setSendMessage] = useState("");
 
   const submitMessage = async (sendMessage, username) => {
@@ -22,7 +32,6 @@ export const App = () => {
       setSendMessage("");
     }
   };
-
   const getThoughts = async () => {
     const apiMessage = await fecthData();
     setMessages(apiMessage.message);
@@ -37,7 +46,6 @@ export const App = () => {
   const autoRefresList = () => {
     setInterval(() => {
       getThoughts();
-      console.log("refresh-");
     }, 5000);
   };
 
@@ -68,11 +76,18 @@ export const App = () => {
 
 
   return (
+    <Provider store={store}>
     <BrowserRouter>
       <main>
         <Switch>
           <Route exact path="/">
-            <UserLogin userExist={userlogged} setUserExist={setUserLogged} />
+            <UserForm/>
+          </Route>
+          <Route exact path="/signup">
+            <SignUp/>
+          </Route>
+          <Route exact path="/signin">
+            <SignIn/>
           </Route>
           <Route  exact path="/thoughts">
             <div className="app-container">
@@ -92,7 +107,6 @@ export const App = () => {
                 <PostThoughts
                   submitMessage={submitMessage}
                   lengthError={lengthError}
-                  username={userlogged}
                   sendMessage={sendMessage}
                   setSendMessage={setSendMessage}
                   messages={messages}
@@ -108,5 +122,6 @@ export const App = () => {
         </Switch>
       </main>
     </BrowserRouter>
+    </Provider>
   );
 };
