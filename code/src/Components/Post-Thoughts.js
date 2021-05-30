@@ -1,29 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { postThoughts } from "../ServiceAPI/ApiServices";
+import { useDispatch } from "react-redux";
+import { user } from "../reducers/user"
 
-const PostThoughts = ({
-  lengthError,
-  submitMessage,
-  username,
-  sendMessage,
-  setSendMessage,
-  messages,
-}) => {
+const PostThoughts = () => {
   const history = useHistory();
+  const [sendMessage, setSendMessage] = useState("");
+  const [lengthError, setLengthError] = useState(false);
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const username = useSelector((store) => store.user.username);
+  const dispatch = useDispatch();
+
+  const submitMessage = async () => {
+    const { messageSent, error400 } = await postThoughts(sendMessage, username, accessToken);
+    setLengthError(error400);
+
+    if (messageSent) {
+      setSendMessage("");
+    }
+  };
+
+  const onPressLogout = () => {
+    dispatch(user.actions.clearState())
+    history.push("/");
+  }
 
   useEffect(() => {
-    setTimeout(()=>{
-      if (!username) {
-        history.push("/");
-      }
-    },500)
-  }, [username]);
-
-
+    if (!accessToken) {
+      history.push("/");
+    }
+  }, [accessToken]);
 
   return (
     <main className="thoughts-component">
-     
+      <button className="logout" onClick={onPressLogout}>LOGOUT</button>
       <div className="container">
         <div className="header">
           <img src="./assets/user.svg" alt="user" />
@@ -48,7 +60,7 @@ const PostThoughts = ({
           )}
         </div>
         <button
-          onClick={() => submitMessage(sendMessage, username)}
+          onClick={() => submitMessage(sendMessage, username, accessToken)}
           type="submit"
           className="send-button"
         >

@@ -5,9 +5,18 @@ export const user = createSlice({
   initialState: {
     accessToken: null,
     username: null,
-    existUser: false,
+    errors: null,
   },
-  reducers: {},
+  reducers: {
+    setUser: (store, action)=>{
+      store.username = action.payload.username
+      store.accessToken = action.payload.accessToken
+    },
+    clearState: (store, action) => {
+      store.username = null
+      store.accessToken = null
+    }
+  },
 
 });
 export default user;

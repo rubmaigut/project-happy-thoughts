@@ -1,9 +1,8 @@
 //Create new User
-export const createUser = async ( email, username, password ) => {
-  let API_URL_NEW_USER =
-    "https://happy-thoughts-api-mongodb-auth.herokuapp.com/signup";
+export const createUser = async (email, username, password) => {
+  let API_URL_NEW_USER = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/signup"
 
-  let userCreated;
+  let userInfo;
   let error400;
 
   await fetch(API_URL_NEW_USER, {
@@ -20,24 +19,23 @@ export const createUser = async ( email, username, password ) => {
     .then((response) => {
       if (response.status === 400) {
         error400 = true;
-        userCreated = false;
       } else {
         return response.json();
       }
     })
     .then((json) => {
       if (json) {
-        userCreated = true;
+        userInfo = json;
       }
     })
-    .catch((err) => (userCreated = false));
+    .catch((err) => (userInfo = false));
 
-  return { userCreated, error400 };
+  return { userInfo, error400 };
 };
 
 //validate existing user
-export const existingUser = async ( username, password ) => {
-  let API_URL_USER = "https://happy-thoughts-api-mongodb-auth.herokuapp.com/signin";
+export const existingUser = async (username, password) => {
+  let API_URL_USER = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/signin";
   let userExist;
   let error400;
 
@@ -54,14 +52,13 @@ export const existingUser = async ( username, password ) => {
     .then((response) => {
       if (response.status === 400) {
         error400 = true;
-        userExist = false;
       } else {
         return response.json();
       }
     })
     .then((json) => {
       if (json) {
-        userExist = true;
+        userExist = json;
       }
     })
     .catch((err) => (userExist = false));
@@ -70,7 +67,7 @@ export const existingUser = async ( username, password ) => {
 
 //Show all thoughts
 export const fecthData = async (accessToken) => {
-  let API_GET_MESSAGES = "https://happy-thoughts-api-mongodb-auth.herokuapp.com/";
+  let API_GET_MESSAGES = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/";
   let message = [];
   let hasError = false;
 
@@ -78,21 +75,32 @@ export const fecthData = async (accessToken) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: accessToken,
+      Authorization: `${accessToken}`,
     },
   })
-    .then((json) => {
-      message.push(...json);
-      return json;
+    .then((response) => {
+      if (response.status === 400) {
+        hasError = true;
+        return;
+      } else {
+        return response.json();
+      }
     })
-    .catch((err) => (hasError = true));
+    .then((json) => {
+      if (json) {
+        message = json;
+      }
+    })
+    .catch((err) => {
+      hasError = true
+    });
 
   return { message, hasError };
 };
 
 //Create new Thoughts
-export const postThoughts = async ( accessToken, message, username) => {
-  let API_URL = "https://happy-thoughts-api-mongodb-auth.herokuapp.com/thoughts";
+export const postThoughts = async (message, username, accessToken) => {
+  let API_URL = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/thoughts";
   let messageSent;
   let error400;
 
@@ -102,7 +110,7 @@ export const postThoughts = async ( accessToken, message, username) => {
       "Content-Type": "application/json",
       Authorization: accessToken,
     },
-    body: JSON.stringify({ message: message, username: username }),
+    body: JSON.stringify({ username: username, message: message }),
   })
     .then((response) => {
       if (response.status === 400) {
@@ -124,7 +132,7 @@ export const postThoughts = async ( accessToken, message, username) => {
 
 // waiting
 export const postLikes = async (messageId, accessToken) => {
-  let LIKES_URL = `https://happy-thoughts-api-mongodb-auth.herokuapp.com/thoughts/${messageId}/like`;
+  let LIKES_URL = `https://happy-thoughts-api-mongodb-aut.herokuapp.com/thoughts/${messageId}/like`;
 
   let sucess;
 
