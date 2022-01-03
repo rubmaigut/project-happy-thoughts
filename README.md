@@ -10,4 +10,4 @@ If would had more time I would add local storage and loading state
 
 ## View it live
 
-https://happythoughts-mrubio.netlify.app/
+https://happy-thoughts-auth-feature.netlify.app/

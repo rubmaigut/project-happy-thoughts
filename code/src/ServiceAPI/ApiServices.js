@@ -1,123 +1,155 @@
 //Create new User
-export const createUser = async (username) =>{
-  console.log(username)
-  let API_URL_USER = 'https://happy-thoughts-api-mongodb.herokuapp.com/user/create'
+export const createUser = async (email, username, password) => {
+  let API_URL_NEW_USER = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/signup"
 
-  let userCreated
-  let error400
-  
-  await fetch(API_URL_USER, {
-    method: 'POST',
+  let userInfo;
+  let error400;
+
+  await fetch(API_URL_NEW_USER, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({"username": username})
+    body: JSON.stringify({
+      email: email,
+      username: username,
+      password: password,
+    }),
   })
-  .then((response) =>{
-    if(response.status === 400){
-      error400 = true 
-      userCreated = false
-      console.log(response)
-    }else{
-    return response.json()
-    }
-  })
-  .then((json)=>{
-    if(json){
-      userCreated = true
-    }
- })
- .catch(err => userCreated= false)
-
- return {userCreated, error400 };
-}
-
-//validate existing user
-export const existingUser =async ()=>{
-  
-  let users= []
-  let hasError = false
-
-  await fetch('https://happy-thoughts-api-mongodb.herokuapp.com/users')
-  .then((response)=>{
-    return response.json()
-  })
-  .then((json)=>{
-    users.push(...json)
-    return(json)
-  })
-  .catch(err => hasError= true)
-  return{ users, hasError }
-}
-
-//Show all thoughts 
-export const fecthData = async () => {
-  let message = []
-  let hasError = false
-  await fetch('https://happy-thoughts-api-mongodb.herokuapp.com/')
     .then((response) => {
-      return response.json()
+      if (response.status === 400) {
+        error400 = true;
+      } else {
+        return response.json();
+      }
     })
     .then((json) => {
-      message.push(...json)
-      return json
+      if (json) {
+        userInfo = json;
+      }
     })
-    .catch(err => hasError= true)
+    .catch((err) => (userInfo = false));
 
-  return {message, hasError}
-}
+  return { userInfo, error400 };
+};
 
-//Create new Thoughts 
-export const postThoughts = async (message, username) =>{
-  let API_URL = 'https://happy-thoughts-api-mongodb.herokuapp.com/thoughts'
-  let messageSent
-  let error400
-  console.log({"message": message, "username":username})
-  await fetch(API_URL, {
-    method: 'POST',
+//validate existing user
+export const existingUser = async (username, password) => {
+  let API_URL_USER = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/signin";
+  let userExist;
+  let error400;
+
+  await fetch(API_URL_USER, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({"message": message, "username":username}) 
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
   })
-  .then((response) =>{
-    if(response.status === 400){
-      error400 = true 
-      messageSent = false
-    }else{
-    return response.json()
-    }
-  })
-  .then((json)=>{
-    if(json){
-      messageSent = true
-    }
-    
- })
- .catch(err => messageSent= false)
+    .then((response) => {
+      if (response.status === 400) {
+        error400 = true;
+      } else {
+        return response.json();
+      }
+    })
+    .then((json) => {
+      if (json) {
+        userExist = json;
+      }
+    })
+    .catch((err) => (userExist = false));
+  return { userExist, error400 };
+};
 
- return {messageSent, error400 };
-}
+//Show all thoughts
+export const fecthData = async (accessToken) => {
+  let API_GET_MESSAGES = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/";
+  let message = [];
+  let hasError = false;
+
+  await fetch(API_GET_MESSAGES, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${accessToken}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 400) {
+        hasError = true;
+        return;
+      } else {
+        return response.json();
+      }
+    })
+    .then((json) => {
+      if (json) {
+        message = json;
+      }
+    })
+    .catch((err) => {
+      hasError = true
+    });
+
+  return { message, hasError };
+};
+
+//Create new Thoughts
+export const postThoughts = async (message, username, accessToken) => {
+  let API_URL = "https://happy-thoughts-api-mongodb-aut.herokuapp.com/thoughts";
+  let messageSent;
+  let error400;
+
+  await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+    body: JSON.stringify({ username: username, message: message }),
+  })
+    .then((response) => {
+      if (response.status === 400) {
+        error400 = true;
+        messageSent = false;
+      } else {
+        return response.json();
+      }
+    })
+    .then((json) => {
+      if (json) {
+        messageSent = true;
+      }
+    })
+    .catch((err) => (messageSent = false));
+
+  return { messageSent, error400 };
+};
 
 // waiting
-export const postLikes = async (messageId)=>{
-  let LIKES_URL = `https://happy-thoughts-api-mongodb.herokuapp.com/thoughts/${messageId}/like`
+export const postLikes = async (messageId, accessToken) => {
+  let LIKES_URL = `https://happy-thoughts-api-mongodb-aut.herokuapp.com/thoughts/${messageId}/like`;
 
-  let sucess 
+  let sucess;
 
-   await fetch(LIKES_URL,
-   {
-    method: 'POST'
+  await fetch(LIKES_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+  })
+    .then((response) => {
+      return response.json();
     })
-  .then((response)=>{return response.json()})
-  .then((json)=>{
-    sucess = true
+    .then((json) => {
+      sucess = true;
     })
-    .catch(err=> sucess= false)
+    .catch((err) => (sucess = false));
 
-    return sucess
-
-}
-
-
-
+  return sucess;
+};

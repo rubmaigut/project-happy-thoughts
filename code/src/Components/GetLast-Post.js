@@ -1,4 +1,6 @@
-import React from "react";
+import React,  { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { fecthData, postLikes} from "../ServiceAPI/ApiServices";
 
 const showTime = (createDate) => {
   const today = new Date();
@@ -19,19 +21,44 @@ const showTime = (createDate) => {
   }
 };
 
-const GetLastPost = ({ messages, error, likesIncrease }) => {
- 
-  
+const GetLastPost = () => {
+  const [messages, setMessages] = useState([]);
+  const [error, setError] = useState(false);
+  const accessToken = useSelector((store) => store.user.accessToken);
+
+  const getThoughts = async () => {
+    const apiMessage = await fecthData(accessToken);
+    setMessages(apiMessage.message);
+    setError(apiMessage.hasError);
+  };
+
+  const likesIncrease = async (messageId) => {
+    const sucess = await postLikes(messageId);
+    if (sucess === true) {
+      getThoughts();
+    }
+  };
+  const autoRefresList = () => {
+    setInterval(() => {
+      getThoughts();
+    }, 5000);
+  };
+
+  useEffect(() => {
+    getThoughts()
+    autoRefresList();
+  }, []);
+
+
   return (
-    <section >
+    <section>
       {error === true ? (
         <h1>This is an Error</h1>
       ) : (
         messages.map((message) => {
           return (
-            <main className="getThoughts">
-            
-              <div key={message._id} className="post-container-message">
+            <main key={message._id} className="getThoughts" >
+              <div className="post-container-message">
                 <div className="header">
                   <img src="./assets/user.svg" alt="user" />
                   <h3>{message.username}</h3>
